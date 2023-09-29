@@ -1,14 +1,18 @@
-data "docker_image" "rattle_image" {
-  name = "${var.docker_image_name}:${var.docker_image_tag}"
-}
-
-resource "null_resource" "push_image" {
+resource "null_resource" "push_docker_image" {
   triggers = {
-    image_id = data.docker_image.rattle_image.id
+    dockerhub_username = var.dockerhub_username
+    dockerhub_password = var.dockerhub_password
+    docker_image_repo  = var.docker_image_repo
+    docker_image_tag   = var.docker_image_tag
   }
 
   provisioner "local-exec" {
-    command = "docker push ${var.docker_image_name}:${var.docker_image_tag}"
+    command = "./build-and-deploy-image.sh"
+    environment = {
+      DOCKERHUB_USERNAME = var.dockerhub_username
+      DOCKERHUB_PASSWORD = var.dockerhub_password
+      DOCKERHUB_REPO     = var.docker_image_repo
+      IMAGE_TAG          = var.docker_image_tag
+    }
   }
 }
-
