@@ -1,8 +1,14 @@
 #!/bin/bash
 
+# Access variables from Terraform environment
+DOCKERHUB_USERNAME="${DOCKERHUB_USERNAME}"
+DOCKERHUB_PASSWORD="${DOCKERHUB_PASSWORD}"
+DOCKERHUB_REPO="${DOCKERHUB_REPO}"
+IMAGE_TAG="${IMAGE_TAG}"
+
 # Login to Docker Hub
 echo "Logging in to Docker Hub..."
-docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+echo $DOCKERHUB_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
 
 # Build the docker image 
 docker build -t "$DOCKERHUB_REPO:$IMAGE_TAG" .
