@@ -1,0 +1,81 @@
+~/t/e/gorattle-terraform-eks-exercise/docker main *1 ❯ terraform apply                                                      15:44:45
+null_resource.push_docker_image: Refreshing state... [id=7779997227130608497]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following
+symbols:
+-/+ destroy and then create replacement
+
+Terraform will perform the following actions:
+
+  # null_resource.push_docker_image must be replaced
+-/+ resource "null_resource" "push_docker_image" {
+      ~ id       = "7779997227130608497" -> (known after apply)
+      ~ triggers = { # forces replacement
+          ~ "docker_image_tag"   = "v1.24fffsf2" -> "v1.0"
+            # (3 unchanged elements hidden)
+        }
+    }
+
+Plan: 1 to add, 0 to change, 1 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+null_resource.push_docker_image: Destroying... [id=7779997227130608497]
+null_resource.push_docker_image: Destruction complete after 0s
+null_resource.push_docker_image: Creating...
+null_resource.push_docker_image: Provisioning with 'local-exec'...
+null_resource.push_docker_image (local-exec): Executing: ["/bin/sh" "-c" "./build-and-deploy-image.sh"]
+null_resource.push_docker_image (local-exec): Logging in to Docker Hub...
+null_resource.push_docker_image (local-exec): Login Succeeded
+
+null_resource.push_docker_image (local-exec): Logging in with your password grants your terminal complete access to your account.
+null_resource.push_docker_image (local-exec): For better security, log in with a limited-privilege personal access token. Learn more at https://docs.docker.com/go/access-tokens/
+null_resource.push_docker_image (local-exec): #1 [internal] load build definition from Dockerfile
+null_resource.push_docker_image (local-exec): #1 sha256:d108788dc7b566c3a316f70b03f9407cc6445ce1059285701e551f5e5a4c33a4
+null_resource.push_docker_image (local-exec): #1 transferring dockerfile: 73B done
+null_resource.push_docker_image (local-exec): #1 DONE 0.0s
+
+null_resource.push_docker_image (local-exec): #2 [internal] load .dockerignore
+null_resource.push_docker_image (local-exec): #2 sha256:49626fc047ec465a2f02d16d3301303414548af37a3512aa32ba788754a7307b
+null_resource.push_docker_image (local-exec): #2 transferring context: 2B done
+null_resource.push_docker_image (local-exec): #2 DONE 0.0s
+
+null_resource.push_docker_image (local-exec): #3 [internal] load metadata for docker.io/library/alpine:latest
+null_resource.push_docker_image (local-exec): #3 sha256:13549c58a76bcb5dac9d52bc368a8fb6b5cf7659f94e3fa6294917b85546978d
+null_resource.push_docker_image: Still creating... [10s elapsed]
+null_resource.push_docker_image (local-exec): #3 ...
+
+null_resource.push_docker_image (local-exec): #4 [auth] library/alpine:pull token for registry-1.docker.io
+null_resource.push_docker_image (local-exec): #4 sha256:9f537861cfb3e9a2b68f5dfa80c39f16e83c3bad8969232453bb1c110c39d06e
+null_resource.push_docker_image (local-exec): #4 DONE 0.0s
+
+null_resource.push_docker_image (local-exec): #3 [internal] load metadata for docker.io/library/alpine:latest
+null_resource.push_docker_image (local-exec): #3 sha256:13549c58a76bcb5dac9d52bc368a8fb6b5cf7659f94e3fa6294917b85546978d
+null_resource.push_docker_image (local-exec): #3 DONE 2.3s
+
+null_resource.push_docker_image (local-exec): #5 [1/1] FROM docker.io/library/alpine:latest@sha256:eece025e432126ce23f223450a0326fbebde39cdf496a85d8c016293fc851978
+null_resource.push_docker_image (local-exec): #5 sha256:d8f9b3c72d10faf0958f43989be96a4a86513daf842dbd1e63314361d3c0a350
+null_resource.push_docker_image (local-exec): #5 CACHED
+
+null_resource.push_docker_image (local-exec): #6 exporting to image
+null_resource.push_docker_image (local-exec): #6 sha256:e8c613e07b0b7ff33893b694f7759a10d42e180f2b4dc349fb57dc6b71dcab00
+null_resource.push_docker_image (local-exec): #6 exporting layers done
+null_resource.push_docker_image (local-exec): #6 writing image sha256:b0adfee3ed014dd1652958fa6fa6ffacf8a21ce879781e5ddf638fb8d8e0cfda done
+null_resource.push_docker_image (local-exec): #6 naming to docker.io/library/gorattle-experiment:v1.0 done
+null_resource.push_docker_image (local-exec): #6 DONE 0.0s
+null_resource.push_docker_image (local-exec): Pushing the image to Docker Hub...
+null_resource.push_docker_image (local-exec): The push refers to repository [docker.io/tanvirsingh/gorattle-experiment]
+null_resource.push_docker_image (local-exec): 5f4d9fc4d98d: Preparing
+null_resource.push_docker_image (local-exec): 5f4d9fc4d98d: Layer already exists
+null_resource.push_docker_image (local-exec): v1.0: digest: sha256:b59c5bf126391dae9fb6c4f07710125a90e35be8b6922e298b6ea832ac7e31f7 size: 527
+null_resource.push_docker_image (local-exec): Logging out from Docker Hub...
+null_resource.push_docker_image (local-exec): Removing login credentials for https://index.docker.io/v1/
+null_resource.push_docker_image (local-exec): Untagged: tanvirsingh/gorattle-experiment:v1.0
+null_resource.push_docker_image (local-exec): Untagged: tanvirsingh/gorattle-experiment@sha256:b59c5bf126391dae9fb6c4f07710125a90e35be8b6922e298b6ea832ac7e31f7
+null_resource.push_docker_image: Creation complete after 16s [id=3924705547873300478]
+
+Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
