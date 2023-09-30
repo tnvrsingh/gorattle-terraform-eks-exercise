@@ -7,3 +7,13 @@ Please find the image [here on Dockerhub](https://hub.docker.com/repository/dock
 
 ### VPC with EKS
 Validated. Working with VPC, namespace, deployment (with the above created image), service and it's endpoint.
+
+### How to run
+
+Before these commands, please make sure AWS credentials are set up.
+
+```
+terraform validate
+terraform plan
+terraform apply
+```
