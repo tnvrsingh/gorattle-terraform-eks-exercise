@@ -18,10 +18,12 @@ terraform plan
 terraform apply
 ```
 
-### Terraform plan failure
+### Context for Terraform plan failure
 
 If you check the `vpc-wth-eks/terraform-validate-plan.log` file, it shows 1 error. Context for this error:
 
 Since I haven't exported the file and set the context, this error is expected.
 
 As part of creating the cluster, we need to output the `kubeconfig` and set it in the context in the terraform code.
+
+`terraform validate` is passing.
